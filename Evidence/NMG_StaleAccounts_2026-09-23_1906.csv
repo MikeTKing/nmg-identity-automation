@@ -1,0 +1,30 @@
+﻿"Name","SamAccountName","Department","Title","LastLogonDate","Enabled","Description"
+"Guest","Guest",,,,"False","Built-in account for guest access to the computer/domain"
+"krbtgt","krbtgt",,,,"False","Key Distribution Center Service Account"
+"TEST DO NOT USE","test.user","IT","Test Account","11/19/2022 6:12:54 PM","True","DO NOT USE"
+"svc_legacyfax","svc_legacyfax","Service Accounts","Service Account","4/28/2023 6:12:55 PM","True","Fax server, decommissioned"
+"Harold Grady","hgrady","IT","Systems Analyst","9/25/2023 6:12:53 PM","True",
+"svc_scanner","svc_scanner","Service Accounts","Service Account","4/12/2024 6:12:55 PM","True","Created by vendor, purpose unknown"
+"Marcus Webb 2","mwebb2","Operations","Registered Nurse","1/7/2025 6:12:54 PM","True","Duplicate account"
+"Roland Pace","rpace","Operations","Facilities Technician","7/15/2025 6:12:53 PM","True",
+"Eric Hoffman","ehoffman","IT","Network Engineer","8/4/2025 6:12:50 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - OLDEST ON RECORD"
+"TEMP Imaging","temp.imaging","Operations","Shared Temp Account","10/14/2025 6:12:54 PM","True","Shared account"
+"Owen Radcliffe","oradcliffe","Operations","Contract Radiology Tech","11/21/2025 6:12:53 PM","True","Contractor"
+"Sam Foster","sfoster","IT","IT Support Technician","11/29/2025 6:12:50 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - password reset operator"
+"Vaughn Sterling","vsterling","Operations","Lab Technician","12/4/2025 6:12:53 PM","True",
+"Ruth Kline","rkline","HR","Compliance Analyst","1/6/2026 6:12:52 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - audit read all"
+"Denise Whitlock","dwhitlock","Operations","Scheduler","1/8/2026 6:12:53 PM","True",
+"Marcus Johnson","mjohnson","IT","IT Administrator","1/13/2026 6:12:55 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - held administrative rights"
+"Curtis Warren","cwarren","Operations","Security Officer","2/17/2026 6:12:51 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - camera review access"
+"Kathy Ferreira","kferreira","Operations","Registered Nurse","2/17/2026 6:12:52 PM","True",
+"Camille Ashford","cashford","Operations","Medical Assistant","3/6/2026 6:12:53 PM","True",
+"Angela Whitfield","awhitfield","Operations","Practice Manager","3/17/2026 6:12:51 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - elevated access"
+"Imani Okoro","iokoro","Operations","Pharmacy Technician","3/27/2026 6:12:53 PM","True",
+"Joel Rivera","jrivera","Operations","Radiology Technologist","3/31/2026 6:12:52 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - imaging write access"
+"Jennifer Voss","jvoss","Finance","Billing Specialist","4/4/2026 6:12:53 PM","True",
+"Tonya Baker","tbaker","Operations","Registered Nurse","4/7/2026 6:12:51 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714"
+"Bernadette Knowles","bknowles","Finance","Finance Analyst","4/29/2026 6:12:50 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714"
+"Dennis Murray","dmurray","Operations","Facilities Technician","5/10/2026 6:12:51 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - badge system access"
+"Peter Norris","pnorris","Finance","Revenue Analyst","5/26/2026 6:12:50 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - reports all"
+"Diane Kessler","dkessler","HR","HR Coordinator","6/1/2026 6:12:50 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714 - retired 04/03"
+"Nina Sullivan","nsullivan","Operations","Care Coordinator","6/9/2026 6:12:52 PM","False","DISABLED 07/17 by R.Ito - post-separation review NMG-2026-0714"
