@@ -31,13 +31,13 @@
     Finds accounts dormant for more than 30 days.
 
 .EXAMPLE
-.\Find-StaleAccounts.ps1 -Days 180 -IncludeDisabled
+    .\Find-StaleAccounts.ps1 -Days 180 -IncludeDisabled
     Finds everything dormant over 180 days, enabled or not.
 
 .NOTES
     Author  : Michael King
     Created : 9/23/2026
-    Built for Northstar Medical Group following case NMG-2026-0714.
+    Built for Northstar Medical Group (fictional) during the TotalThreat 30-Day Challenge, following case NMG-2026-0714
 #>
 param(
     [int]$Days = 90,
