@@ -1,65 +1,50 @@
-
 # NMG Identity Automation
 
-PowerShell tooling for identity lifecycle management, built for
-Northstar Medical Group.
+PowerShell scripts that automate parts of the identity lifecycle, written for Northstar Medical Group, a simulated healthcare organization.
 
 ## The Problem
 
-Northstar did not have an automated way to find the user accounts that belonged to people 
-who no longer worked there. 
-The offboarding process was run by a single employee who notified the IT Department 
-by email when someone was leaving. 
-When she left, the notifications stopped, and nobody was aware for 102 days.
+Northstar did not have an automated way to find the user accounts that belonged to people who no longer worked there. The offboarding process was run by a single employee who notified the IT Department by email when someone was leaving. When she left, the notifications stopped, and nobody was aware for 102 days.
 
-A manual reconciliation identified 23 stale accounts and took 11 hours
-across 4 days. It could not identify accounts belonging to people whose
-separation was never recorded, contractors who were never on payroll,
-or service accounts that were never people at all.
+A manual reconciliation identified 23 stale accounts and took 11 hours across 4 days. It could not identify accounts belonging to people whose separation was never recorded, contractors who were never on payroll, or service accounts that were never people at all.
 
 ## The Approach
 
-Rather than comparing directory records against payroll records, these
-tools query the domain controller directly for the last authentication
-date of every account. That value does not depend on paperwork being
-filed correctly or names matching between systems.
+Instead of matching Active Directory against HR or payroll records, these scripts ask the domain controller when each account last signed in. That answer comes from sign-in activity itself, so it holds up even when a departure goes unreported, a name is spelled differently between systems, or the account never belonged to a person.
 
 ## Tools
 
 ### Find-StaleAccounts.ps1
 
-Identifies enabled accounts that have not authenticated within a given
-number of days, including accounts that have never authenticated.
-Exports a timestamped CSV plus a summary recording the exact query used
+Lists enabled accounts that haven't signed in for a set number of days, including accounts that have never signed in. Each run saves a timestamped CSV and a summary file that records the exact criteria used.
 
+```powershell
 .\Find-StaleAccounts.ps1
-    .\Find-StaleAccounts.ps1 -Days 30
-    .\Find-StaleAccounts.ps1 -Days 180 -IncludeDisabled
+.\Find-StaleAccounts.ps1 -Days 30
+.\Find-StaleAccounts.ps1 -Days 180 -IncludeDisabled
+```
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `-Days` | int | 90 | Days without authentication before an account is considered stale |
-| `-ReportPath` | string | C:\Reports | Where reports are written |
-| `-IncludeDisabled` | switch | off | Include disabled accounts in results |
+| `-Days` | int | 90 | Number of days without a sign-in before an account is flagged |
+| `-ReportPath` | string | C:\Reports | Folder where the reports are saved |
+| `-IncludeDisabled` | switch | off | Also report disabled accounts |
 
-**Output:** a timestamped CSV of findings, and a summary file recording
-the question that produced them so the report can be reproduced.
+**Output:** Every run creates two files: a CSV listing each flagged account, and a summary recording the question behind it, so anyone can rerun the same check and compare results.
 
 ## Repository Structure
 
     Scripts/        PowerShell tools
-    Documentation/  Runbooks and process documentation
-    Evidence/       Sample output and verification screenshots
-    Logs/           Execution logs
+    Documentation/  Runbooks and procedures
+    Evidence/       Sample reports and screenshots that verify results
+    Logs/           Output from script runs
 
 ## Environment
 
-Windows Server with Active Directory Domain Services.
-Requires the ActiveDirectory PowerShell module.
+Runs on Windows Server with Active Directory Domain Services. Requires the ActiveDirectory PowerShell module.
 
 ## About
 
-Built during the TotalThreat 30-Day Challenge in a simulated
-healthcare environment. Northstar Medical Group is fictional.
+Created during the TotalThreat 30-Day Challenge. Northstar Medical Group and every account in this project are fictional, and all work was done in a simulated healthcare lab environment.
 
 Author: Michael King
