@@ -1,4 +1,3 @@
-markdown
 # User Account Offboarding
 
 **Document:** SOP-IAM-001
@@ -29,7 +28,6 @@ before anything changes.
 ### 2. Disable the account
 Blocks authentication. This is the step that reduces risk, so it
 happens as early as the record allows. Stamp the description with
-
 the ticket number.
 
 ### 3. Reset the password
@@ -55,6 +53,68 @@ until Counsel releases it in writing.
 
 Disabled accounts are evidence. You disable a leaver.
 You do not delete them.
+
+## Tooling
+
+Steps 1 and 2 of this procedure are implemented in
+`Scripts/Disable-NMGUser.ps1`.
+
+    .\Disable-NMGUser.ps1 -Username "hgrady" -Ticket "NMG-0211"
+
+Both parameters are mandatory. The script will not run without
+an authorising ticket number.
+
+### What the tool refuses to do
+
+The script stops, without making any change, if:
+
+- The named account does not exist.
+- The account is already disabled. Re-running would overwrite
+  the existing record of who offboarded it and when.
+- The account appears to be a service account rather than a
+  person. Those need their own procedure, starting with
+  finding an owner.
+- The ticket number is not in the form NMG-0000.
+
+### Checking before acting
+
+The script supports `-WhatIf`. Running it with that switch
+performs every check and reports what it would do, without
+changing anything.
+
+Run it with `-WhatIf` first. Every time.
+
+### What it leaves behind
+
+- Two timestamped CSV files in `Evidence/`, capturing the
+  account and its group memberships before the change.
+- A transcript in `Logs/`, recording which account was
+  actioned, under which ticket, by whom, and at what time.
+
+Steps 3 to 5 are still performed by hand. They will be added
+to this script over the remainder of the week.
+
+## Why step 4 depends on step 1
+
+Removing group memberships is the only step in this procedure that
+cannot be reversed. The CSV written in step 1 is the only record that
+will ever exist of what the account could reach. The removal loop uses
+the group list captured in step 1, so if the session was closed
+between steps, step 1 must be run again first. If step 1 reports zero
+memberships, stop and find out why before running step 4.
+
+## Why step 5 goes last
+
+Moving an object changes its distinguished name. Every earlier step
+refers to the account at its original location, so a move performed
+first would cause the remaining steps to fail against a path that no
+longer exists.
+
+## History
+
+| Version | Date | Author | Change |
+|---|---|---|---|
+| 1.0 | 2026-09-26 | Michael King | Initial release under NMG-0203. First use: kferreira, offboarded by hand. |
 
 ---
 
