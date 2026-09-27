@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿#--- STEP 1 OF 5: DOCUMENT ---------------------------------
 # Nothing here changes anything. That is the point.
 # Everything after this is difficult or impossible to reverse,
@@ -156,4 +156,3 @@ $dn = (Get-ADUser -Identity "kferreira").DistinguishedName
 Move-ADObject -Identity $dn -TargetPath $target
 
 Write-Host "Moved to Disabled Users" -ForegroundColor Green
->>>>>>> 5c2c3d7f9c691bd9e0b3a2da7834f5fed3d3f6dc
