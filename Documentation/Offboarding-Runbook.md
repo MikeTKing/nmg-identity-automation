@@ -1,68 +1,104 @@
-User Account Offboarding
+# User Account Offboarding
 
-Document: SOP-IAM-001 Author: Michael King Raised under: Ticket NMG-0203 Approved by: R. Ito, Privacy Office
+**Document:** SOP-IAM-001
+**Author:** Michael King
+**Raised under:** Ticket NMG-0203
+**Approved by:** R. Ito, Privacy Office
 
-Purpose
+## Purpose
 
-Defines the complete sequence for offboarding a user account at Northstar Medical Group. Before this document, no written offboarding standard existed.
+Defines the complete sequence for offboarding a user account at
+Northstar Medical Group. Before this document, no written
+offboarding standard existed.
 
-Before you begin
-There is a ticket from a named requester.
-Username, display name and department all match.
-No legal hold prevents action on this account.
-The account belongs to a person, not a service.
-Procedure
-1. Document the current state
+## Before you begin
 
-Export every attribute and group membership to a timestamped file. Removed memberships cannot be recovered, so the record is taken before anything changes.
+- There is a ticket from a named requester.
+- Username, display name and department all match.
+- No legal hold prevents action on this account.
+- The account belongs to a person, not a service.
 
-2. Disable the account
+## Procedure
 
-Blocks authentication. This is the step that reduces risk, so it happens as early as the record allows. Stamp the description with the ticket number.
+### 1. Document the current state
+Export every attribute and group membership to a timestamped file.
+Removed memberships cannot be recovered, so the record is taken
+before anything changes.
 
-3. Reset the password
+### 2. Disable the account
+Blocks authentication. This is the step that reduces risk, so it
+happens as early as the record allows. Stamp the description with
+the ticket number.
 
-A random value nobody holds. If the account is ever re-enabled by mistake, the old credential must not still work.
+### 3. Reset the password
+A random value nobody holds. If the account is ever re-enabled by
+mistake, the old credential must not still work.
 
-4. Remove group memberships
+### 4. Remove group memberships
+Disabling removes no access. Stripping the groups means a
+re-enabled account can reach nothing. Domain Users is the primary
+group and is skipped.
 
-Disabling removes no access. Stripping the groups means a re-enabled account can reach nothing. Domain Users is the primary group and is skipped.
+### 5. Move to the Disabled Users OU
+Quarantine, so the account is never mistaken for active staff.
+Last, because moving changes the object path and invalidates
+earlier references.
 
-5. Move to the Disabled Users OU
+## Retention and disposal
 
-Quarantine, so the account is never mistaken for active staff. Last, because moving changes the object path and invalidates earlier references.
+Retained in the Disabled Users OU for the period the retention
+policy defines, then deleted on a documented schedule. Where a
+legal hold is in place the clock stops and nothing is deleted
+until Counsel releases it in writing.
 
-Retention and disposal
+Disabled accounts are evidence. You disable a leaver.
+You do not delete them.
 
-Retained in the Disabled Users OU for the period the retention policy defines, then deleted on a documented schedule. Where a legal hold is in place the clock stops and nothing is deleted until Counsel releases it in writing.
+## Tooling
 
-Disabled accounts are evidence. You disable a leaver. You do not delete them.
+All five steps of this procedure are implemented in
+`Scripts/Offboard-NMGUser1.ps1`. Each step is a labelled block in the
+script, `STEP 1 OF 5` through `STEP 5 OF 5`, in the same order as the
+procedure above.
 
-Tooling
+| Procedure step | Script block |
+|---|---|
+| 1. Document the current state | `STEP 1 OF 5: DOCUMENT` |
+| 2. Disable the account | `STEP 2 OF 5: DISABLE` |
+| 3. Reset the password | `STEP 3 OF 5: RESET THE PASSWORD` |
+| 4. Remove group memberships | `STEP 4 OF 5: REMOVE GROUP MEMBERSHIPS` |
+| 5. Move to the Disabled Users OU | `STEP 5 OF 5: MOVE` |
 
-All five steps of this procedure are implemented in Scripts/Offboard-NMGUser1.ps1. Each step is a labelled block in the script, STEP 1 OF 5 through STEP 5 OF 5, in the same order as the procedure above.
+Run the blocks one at a time, in order, in the same PowerShell ISE
+session: highlight a block, press F8, and read the output before
+moving to the next. Do not run the whole script at once.
 
-Procedure step	Script block
-1. Document the current state	STEP 1 OF 5: DOCUMENT
-2. Disable the account	STEP 2 OF 5: DISABLE
-3. Reset the password	STEP 3 OF 5: RESET THE PASSWORD
-4. Remove group memberships	STEP 4 OF 5: REMOVE GROUP MEMBERSHIPS
-5. Move to the Disabled Users OU	STEP 5 OF 5: MOVE
+This document describes what should happen. The script is how it
+happens.
 
-Run the blocks one at a time, in order, in the same PowerShell ISE session: highlight a block, press F8, and read the output before moving to the next. Do not run the whole script at once.
+## Why step 4 depends on step 1
 
-This document describes what should happen. The script is how it happens.
+Removing group memberships is the only step in this procedure that
+cannot be reversed. The CSV written in step 1 is the only record that
+will ever exist of what the account could reach. The removal loop uses
+the group list captured in step 1, so if the session was closed
+between steps, step 1 must be run again first. If step 1 reports zero
+memberships, stop and find out why before running step 4.
 
-Why step 4 depends on step 1
+## Why step 5 goes last
 
-Removing group memberships is the only step in this procedure that cannot be reversed. The CSV written in step 1 is the only record that will ever exist of what the account could reach. The removal loop uses the group list captured in step 1, so if the session was closed between steps, step 1 must be run again first. If step 1 reports zero memberships, stop and find out why before running step 4.
+Moving an object changes its distinguished name. Every earlier step
+refers to the account at its original location, so a move performed
+first would cause the remaining steps to fail against a path that no
+longer exists.
 
-Why step 5 goes last
+## History
 
-Moving an object changes its distinguished name. Every earlier step refers to the account at its original location, so a move performed first would cause the remaining steps to fail against a path that no longer exists.
+| Version | Date | Author | Change |
+|---|---|---|---|
+| 1.0 | 2026-09-26 | Michael King | Initial release under NMG-0203. First use: kferreira, offboarded by hand. |
 
-History
-Version	Date	Author	Change
-1.0	2026-09-26	Michael King	Initial release under NMG-0203. First use: kferreira, offboarded by hand.
+---
 
-Built during the TotalThreat 30-Day Challenge in a simulated healthcare environment. Northstar Medical Group is fictional.
+Built during the TotalThreat 30-Day Challenge in a simulated
+healthcare environment. Northstar Medical Group is fictional.
