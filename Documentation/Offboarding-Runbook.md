@@ -56,10 +56,10 @@ You do not delete them.
 
 ## Tooling
 
-Steps 1 and 2 of this procedure are implemented in
+Steps 1, 2 and 4 of this procedure are implemented in
 `Scripts/Disable-NMGUser.ps1`.
 
-    .\Disable-NMGUser.ps1 -Username "hgrady" -Ticket "NMG-0211"
+    .\Disable-NMGUser.ps1 -Username "rpace" -Ticket "NMG-0212"
 
 Both parameters are mandatory. The script will not run without
 an authorising ticket number.
@@ -69,20 +69,41 @@ an authorising ticket number.
 The script stops, without making any change, if:
 
 - The named account does not exist.
-- The account is already disabled. Re-running would overwrite
-  the existing record of who offboarded it and when.
-- The account appears to be a service account rather than a
-  person. Those need their own procedure, starting with
-  finding an owner.
+- The account is already disabled.
+- The account appears to be a service account.
 - The ticket number is not in the form NMG-0000.
+- The group membership export did not write a file.
+- The export file exists but contains no rows.
+
+### Why step 4 has a gate in front of it
+
+Removing group memberships is the only step in this procedure
+that cannot be reversed. Active Directory keeps no history of a
+removed membership, so the CSV written moments earlier is the
+only record that will ever exist of what the account could reach.
+
+The script therefore reads that file back from disk and counts
+the rows before the removal is reachable. Checking the query
+result instead would confirm only that the query ran, not that
+the record survived to disk.
+
+If the record cannot be verified, the script stops and the
+account is left untouched.
+
+### Partial failure
+
+If an individual membership cannot be removed, the script
+records it, continues with the rest, and reports removed and
+failed counts separately. An account left partially stripped is
+reported as such rather than passing silently.
 
 ### Checking before acting
 
-The script supports `-WhatIf`. Running it with that switch
-performs every check and reports what it would do, without
-changing anything.
+The script supports `-WhatIf`. Both the disable and the group
+removal are declared, so both are skipped on a dry run.
 
-Run it with `-WhatIf` first. Every time.
+Run it with `-WhatIf` first, and verify the result rather than
+trusting the output. Every time.
 
 ### What it leaves behind
 
@@ -91,8 +112,7 @@ Run it with `-WhatIf` first. Every time.
 - A transcript in `Logs/`, recording which account was
   actioned, under which ticket, by whom, and at what time.
 
-Steps 3 to 5 are still performed by hand. They will be added
-to this script over the remainder of the week.
+Steps 3 and 5 are still performed by hand.
 
 ## Why step 4 depends on step 1
 
@@ -115,6 +135,7 @@ longer exists.
 | Version | Date | Author | Change |
 |---|---|---|---|
 | 1.0 | 2026-09-26 | Michael King | Initial release under NMG-0203. First use: kferreira, offboarded by hand. |
+| 1.1 | 2026-09-28 | Michael King | Step 4 added to the script under NMG-0212, behind an evidence read-back gate, with partial-failure reporting. First use: rpace. |
 
 ---
 

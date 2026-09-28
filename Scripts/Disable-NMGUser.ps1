@@ -141,3 +141,12 @@ Write-Host ""
 
 Stop-Transcript | Out-Null
 
+foreach ($g in $groups) {
+
+    if ($g.Name -eq "Domain Users") { continue }
+
+    Remove-ADGroupMember -Identity $g `
+        -Members $Username -Confirm:$false
+
+    Write-Host "  Removed: $($g.Name)" -ForegroundColor Yellow
+}
