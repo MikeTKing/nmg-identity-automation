@@ -1,0 +1,3 @@
+﻿"Name","GroupCategory","DistinguishedName"
+"Domain Users","Security","CN=Domain Users,CN=Users,DC=NMG,DC=com"
+"Operations-Users","Security","CN=Operations-Users,OU=Operations,DC=NMG,DC=com"
