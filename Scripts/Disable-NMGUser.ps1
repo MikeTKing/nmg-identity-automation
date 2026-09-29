@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     Documents, disables and strips group memberships from a single
     Active Directory account.
@@ -179,9 +179,7 @@ if ($PSCmdlet.ShouldProcess($Username, "Disable account and stamp $Ticket")) {
 # A SECOND ShouldProcess block. WhatIf skips what is inside it,
 # including the loop AND the report of what the loop did.
 
-$toRemove = @($groups | Where-Object { $_.Name -ne "Domain Users" })
-
-if ($PSCmdlet.ShouldProcess($Username, "Remove $($toRemove.Count) memberships")) {
+if ($PSCmdlet.ShouldProcess($Username, "Remove $($written.Count) memberships")) {
 
     $removed = @()
     $failed  = @()
@@ -189,7 +187,9 @@ if ($PSCmdlet.ShouldProcess($Username, "Remove $($toRemove.Count) memberships"))
     # The catch does NOT stop the loop. Stopping on one bad
     # membership would leave the rest attached, and you would
     # have no idea which half came off.
-    foreach ($g in $toRemove) {
+    foreach ($g in $groups) {
+
+        if ($g.Name -eq "Domain Users") { continue }
 
         try {
             Remove-ADGroupMember -Identity $g -Members $Username `
