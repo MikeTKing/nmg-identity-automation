@@ -57,24 +57,17 @@ You do not delete them.
 ## Tooling
 
 All five steps of this procedure are implemented in
-`Scripts/Disable-NMGUser.ps1`.
+`Scripts/Offboard-NMGUser.ps1`.
 
-    .\Disable-NMGUser.ps1 -Username "oradcliffe" -Ticket "NMG-0213"
+    .\Scripts\Offboard-NMGUser.ps1 -Username "jdoe" -Ticket "NMG-0214"
 
 Both parameters are mandatory. The script will not run without
 an authorising ticket number.
 
-### What the tool refuses to do
-
-The script stops, without making any change, if:
-
-- The named account does not exist.
-- The account is already disabled.
-- The account appears to be a service account.
-- The ticket number is not in the form NMG-0000.
-- The group membership export did not write a file.
-- The export file exists but contains no rows.
-- The Disabled Users OU cannot be found.
+Operating instructions, including every refusal the script can
+produce and what to do about each one, are in the repository
+README rather than here. This document describes what should
+happen. The README describes how to make it happen.
 
 ### Why step 4 has a gate in front of it
 
@@ -84,13 +77,6 @@ only record that will ever exist of what the account could
 reach, so the script reads that file back from disk and counts
 the rows before the removal is reachable.
 
-### Partial failure
-
-If an individual membership cannot be removed, the script
-records it, continues with the rest, and reports removed and
-failed counts separately. An account left partially stripped is
-reported as such rather than passing silently.
-
 ### Why step 5 goes last
 
 Moving an object changes its distinguished name. Every earlier
@@ -98,12 +84,27 @@ step refers to the account at its original location, so a move
 performed first would cause the remaining steps to fail against
 a path that no longer exists.
 
-### Checking before acting
+## Reporting
 
-The script supports `-WhatIf`. All three destructive operations
-are declared, so a dry run performs every check and changes
-nothing. Run it with `-WhatIf` first, and verify the result
-rather than trusting the output.
+`Scripts/Get-NMGOffboardingStatus.ps1` reports how many accounts
+have been offboarded, how many are offboarded but not yet moved,
+and how many remain. It takes no parameters and makes no changes
+of any kind. It is safe for anybody to run at any time.
+
+## Known exceptions
+
+Two accounts, hgrady and rpace, were offboarded before step 5
+was implemented and were moved into the Disabled Users OU
+manually afterwards. Their evidence files and logs therefore do
+not record the move.
+
+## History
+
+This procedure was tooled between Day 7 and Day 10. Earlier
+commits refer to the script as Disable-NMGUser.ps1, which was
+accurate when it performed two steps. It was renamed once it
+performed all five.
+
 
 ### What it leaves behind
 
@@ -118,6 +119,7 @@ rather than trusting the output.
 have been offboarded, how many are offboarded but not yet moved,
 and how many remain. It takes no parameters and makes no changes
 of any kind. It is safe for anybody to run at any time.
+
 
 ## Known exceptions
 
