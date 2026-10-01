@@ -137,6 +137,46 @@ the group list captured in step 1, so if the session was closed
 between steps, step 1 must be run again first. If step 1 reports zero
 memberships, stop and find out why before running step 4.
 
+## Bulk requests
+
+This procedure describes offboarding a single account against a
+single authorising ticket. Requests sometimes arrive as a list
+instead, usually as a spreadsheet from Human Resources.
+
+A list is a request, not an authorisation. It must be validated
+before any account on it is actioned.
+
+### The file you were sent is evidence
+
+Store the original unmodified, alongside the offboarding evidence
+it produced. Cleaning is performed on a copy. The original proves
+what was asked for. The cleaned copy proves what was decided.
+
+### Every row is checked before any row is actioned
+
+For each row, confirm:
+
+- The username exists in the directory.
+- The account is not already disabled.
+- The account belongs to a person, not a service.
+- The person is not a current employee.
+
+That last check is the one a spreadsheet cannot help with, and it
+is the one that matters most. A row naming a current employee is
+indistinguishable, on the page, from a correct row.
+
+### A person reviews the result
+
+Validation produces a report. The report is read by a person, and
+that person decides whether to proceed. Validation that feeds
+straight into action is not validation, it is a delay.
+
+### Known gap
+
+No tooling currently exists to perform this validation. It is
+performed manually. Automating it is the next piece of work.
+
+
 ## History
 
 | Version | Date | Author | Change |
