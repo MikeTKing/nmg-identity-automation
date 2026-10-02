@@ -171,10 +171,53 @@ Validation produces a report. The report is read by a person, and
 that person decides whether to proceed. Validation that feeds
 straight into action is not validation, it is a delay.
 
-### Known gap
+### How bulk requests are processed
 
-No tooling currently exists to perform this validation. It is
-performed manually. Automating it is the next piece of work.
+Bulk offboarding runs in three separate phases. The separation
+is the control. Collapsing any two of them removes it.
+
+**Phase 1, read and clean.** Import the file, trim every field,
+skip rows with no username, reject anything not shaped like a
+username, and remove duplicates on the trimmed username. This
+phase uses the file alone and changes nothing.
+
+**Phase 2, check and report.** Look up every remaining row in
+the directory and record, for each one, whether the account
+exists, whether it is already disabled, whether it is a service
+account, and whether the person appears to be a current
+employee. This phase produces a report and changes nothing.
+
+**A person reviews the report and approves it.** This step is
+not optional and it is not a formality. Deciding that a named
+individual should not be offboarded is a judgement rather than
+a rule, and judgements require a person.
+
+**Phase 3, act.** Offboard the accounts on the approved list.
+This phase reads the approved output of phase 2 and never the
+original file.
+
+### Why the phases stay separate
+
+A validation check placed inside the action loop runs at the
+same speed as the action, with nobody watching. It will catch
+conditions that are rules, such as a service account or an
+already disabled account. It cannot catch a row naming a current
+employee, because that row is indistinguishable from a correct
+one and only a person can decide.
+
+Validation that feeds directly into action provides no
+opportunity for review. It is a delay, not a control.
+
+### Tested
+
+An unvalidated bulk run against a real separations file was
+simulated on 12 August 2026. It reported complete success while
+disabling a current employee, two service accounts, and
+overwriting four existing offboarding records, with no evidence
+captured for any of the 32 accounts modified.
+
+See `Documentation/Blast-Radius-Findings.md`.
+
 
 
 ## History
