@@ -1,0 +1,33 @@
+﻿  BULK OFFBOARDING REVIEW
+  Source: NMG_Separations_Q2Q3.csv
+  Validated: Saturday 3 October 2026, 14:30
+
+  NEEDS YOUR DECISION
+
+    Row 29 asks you to offboard Priya Patel (ppatel).
+    This account was last used on 15 September, 18:12.
+    Should this account be offboarded?   [ ] yes   [ ] no
+
+  PLEASE CONFIRM
+
+    2 service accounts. Not people, and neither has a
+      named owner.          svc_scanner, svc_backup
+
+    9 already offboarded. Re-running would overwrite
+      the record of who did it and under which ticket.
+
+  DROPPED AUTOMATICALLY, NO ACTION NEEDED
+
+    5 rows dropped during cleaning:
+      2  no username
+      1  not a username
+      1  duplicate of row 6
+      1  duplicate of row 4
+        not in the directory
+
+    Full detail in Separations_dropped.csv
+
+  ----------------------------------------------------
+  22 accounts will be offboarded if you approve this.
+  ----------------------------------------------------
+

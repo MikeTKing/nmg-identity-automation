@@ -218,6 +218,58 @@ captured for any of the 32 accounts modified.
 
 See `Documentation/Blast-Radius-Findings.md`.
 
+### The validation report
+
+Phase 2 produces a report for human review and a separate
+approved list for phase 3. The two files have different
+audiences and are not interchangeable.
+
+`Validation-Report.txt` is written to be read by a person.
+`Approved.csv` is written to be parsed by phase 3.
+
+### Report format
+
+The report presents findings in three tiers, ordered by what a
+wrong decision costs. The format is part of the control. A
+future version that flattens it into a single table has removed
+the control without changing a single check.
+
+**Tier 1, at the top, alone.** Any row where a wrong decision
+would cause a person to lose access they need, or a system to
+stop working. Stated as a question, with enough context to
+answer it. Nothing appears above it on the page.
+
+**Tier 2.** Rows requiring a decision where nothing is urgent.
+Service accounts and previously offboarded records. Grouped and
+listed once.
+
+**Tier 3.** Rows dropped mechanically, where the tool is certain
+and human review adds nothing. Counted and summarised, never
+itemised. Full detail is available in the dropped file.
+
+The report ends with the number of accounts that will be
+offboarded if it is approved. That number is what the approver
+is signing.
+
+### Who approves
+
+The Privacy Officer, or a delegate named in writing. Approval is
+recorded by replying to the report, and the reply is stored with
+the evidence for that run.
+
+### Why the tiering matters
+
+A reviewer reads the first few rows of a list carefully and the
+remainder progressively less so. This is a description of
+everybody rather than a criticism of anybody. A report that
+presents forty rows of equal weight therefore spends most of the
+reviewer's attention on rows that required none, and a row that
+needed a decision can be approved without being read.
+
+A review that is performed but not really done is worse than no
+review, because it converts an unchecked action into an approved
+one and attaches a name to it.
+
 
 
 ## History
