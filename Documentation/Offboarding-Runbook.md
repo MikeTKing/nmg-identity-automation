@@ -326,5 +326,46 @@ state. A count alone is not sufficient.
 
 ---
 
+## Why each safeguard exists
+
+Every safeguard below looks like unnecessary caution to somebody
+who was not here when it was added. Each one is recorded with the
+consequence of removing it, so that a future change is a decision
+rather than an assumption.
+
+**Documentation happens before removal.** Active Directory keeps
+no history of a removed group membership. The CSV written in step
+1 is the only record of what an account could reach, and it is
+also the only thing a rollback can restore from. Remove this step
+and a failed bulk run has nothing to roll back to.
+
+**Validation is separate from action.** A check placed inside the
+action loop runs at the same speed as the action, with nobody
+watching. Separating them creates a point at which a person reads
+a report and decides. Collapse the phases and that point
+disappears, along with the only control that catches a row naming
+a current employee.
+
+**The report has three tiers.** A reviewer reads the first few
+rows of a list carefully and the remainder progressively less so.
+Presenting forty rows of equal weight spends the reviewer's
+attention on rows that needed none, and a row requiring a decision
+can be approved without being read. Flattening the report removes
+the control without changing a single check.
+
+**A person approves before anything runs.** Deciding that a named
+individual should not be offboarded is a judgement rather than a
+rule. On 13 August a row naming a current employee was correctly
+formatted, correctly spelled and pointed at a valid account. No
+automated check would have refused it. It was declined by a person
+reading one line.
+
+### Before removing any of the above
+
+Read this section and the findings documents that produced it.
+Each safeguard was added in response to a specific failure that
+was observed rather than imagined.
+
+
 Built during the TotalThreat 30-Day Challenge in a simulated
 healthcare environment. Northstar Medical Group is fictional.

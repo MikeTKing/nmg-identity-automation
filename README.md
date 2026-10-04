@@ -78,6 +78,47 @@ waiting. Takes no parameters and makes no changes of any kind.
 **Output:** three counts and two named lists, printed to the
 console. Nothing is written to disk.
 
+### Invoke-BulkValidation.ps1
+
+Reads a separations list, cleans a copy, checks every row against
+Active Directory, and writes a report for human review plus an
+approved list for the bulk script. Contains no command that can
+modify an account.
+
+    .\Invoke-BulkValidation.ps1 -InputFile ".\Evidence\<the file>.csv"
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `-InputFile` | string | required | The separations file, as received. Never modified |
+| `-OutputPath` | string | C:\Reports\Separations | Where the cleaned copy, report and approved list go |
+
+**Output:** `Separations_dropped.csv`, `Validation-Report.txt`,
+and `Approved.csv`. The report is for a person. The approved list
+is for the bulk script.
+
+### Invoke-BulkOffboarding.ps1
+
+Runs all five steps of SOP-IAM-001 against every account on an
+approved list. Each account is atomic: it completes or is rolled
+back. Every outcome is written to disk the moment it is known.
+Stops after 3 consecutive failures.
+
+    .\Invoke-BulkOffboarding.ps1 -ApprovedList ".\Evidence\Approved.csv" -Ticket "NMG-0000" -WhatIf
+    .\Invoke-BulkOffboarding.ps1 -ApprovedList ".\Evidence\Approved.csv" -Ticket "NMG-0000"
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `-ApprovedList` | string | required | The approved list from Invoke-BulkValidation |
+| `-Ticket` | string | NMG-0215 | Authorising ticket, stamped on every account |
+| `-OutputPath` | string | C:\Reports\Offboarding | Where evidence and results are written |
+| `-BreakOn` | string | empty | Test hook. Simulates a failure on matching accounts. Does nothing unless passed |
+| `-WhatIf` | switch | off | Runs every step and changes nothing |
+
+**Output:** two CSV files per completed account, a `BulkRun_*.csv`
+results file with one line per account, a summary naming every
+account that did not complete, and a transcript in `Logs/`.
+
+
 ## When the script refuses
 
 A refusal is the tool working correctly. It stops before making
@@ -91,15 +132,22 @@ any change at all, and tells you why.
 | ticket should look like NMG-0000 | The ticket format is wrong | Use the full four digit form |
 | export file is empty | The record could not be written | Check the reports folder exists and is writable |
 | Disabled Users OU not found | The destination is missing | Steps 1 to 4 completed. Move the account by hand |
+| not a username | An ID or a display name in the username column | Correct it at source, or drop the row |
+| duplicate of row N | Same person listed twice | No action. Handled at row N |
+| STILL EMPLOYED | The person appears to still work here | Do not proceed. Ask the Privacy Officer |
+| STRANDED | A step failed and the rollback failed too | Manual review. The account is named in the results file |
+
 
 ## Known limitations
 
 - Three accounts were offboarded before step 5 was implemented
   and were moved into the Disabled Users OU manually afterwards.
   Their logs do not record the move.
-- Handles one account per run. Bulk processing is not built yet.
 - The service account check matches on a name prefix and a
   department. An unusually named service account could get past it.
+- STILL EMPLOYED is inferred from a recent logon. It is a signal
+  for a person to check, not a verdict.
+
 
 ## Repository Structure
 
