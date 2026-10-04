@@ -1,0 +1,57 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261004010935
+Username: NMG\Administrator
+RunAs User: NMG\Administrator
+Configuration Name: 
+Machine: WIN-0L625E156HN (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\system32\WindowsPowerShell\v1.0\PowerShell_ISE.exe
+Process ID: 7860
+PSVersion: 5.1.26100.7462
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7462
+BuildVersion: 10.0.26100.7462
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+  BULK OFFBOARDING
+  Accounts : 22
+  Ticket   : NMG-0231
+
+  ok       dalvarez
+  ok       pnakamura
+  ok       gokonkwo
+  ok       awhitlock
+  ok       bferreiro
+  ok       tvance
+  ok       dmbeki
+  ok       apetrova
+  ok       wcho
+  ok       rquaye
+  ok       mdelacroix
+  ok       isorokin
+  ok       lansari
+  ok       bfeld
+  ok       yadeyemi
+  ok       test.user
+  ok       moyelaran
+  ok       cpetrie
+  ok       hyoshida
+  ok       ebergstrom
+  ok       smarchetti
+  ok       nosei
+
+  Bulk offboarding finished.  Approved: 22
+
+    Completed ......... 22
+    Rolled back ....... 0
+    Stranded .......... 0
+
+
+**********************
+Windows PowerShell transcript end
+End time: 20261004010952
+**********************

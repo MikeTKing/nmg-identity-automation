@@ -1,0 +1,3 @@
+"Name","DistinguishedName"
+"Domain Users","CN=Domain Users,CN=Users,DC=NMG,DC=com"
+"Operations-Users","CN=Operations-Users,OU=Operations,DC=NMG,DC=com"

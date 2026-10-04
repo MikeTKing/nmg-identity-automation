@@ -1,4 +1,4 @@
-﻿[CmdletBinding()]
+﻿[CmdletBinding(SupportsShouldProcess)]
 param(
     [Parameter(Mandatory)] [string]$ApprovedList,
     [string]$Ticket     = "NMG-0215",
@@ -15,10 +15,15 @@ if (-not (Test-Path $OutputPath)) {
     New-Item -Path $OutputPath -ItemType Directory -Force | Out-Null
 }
 
+$LogPath = "C:\nmg-identity-automation\Logs"
+if (-not (Test-Path $LogPath)) { New-Item -Path $LogPath -ItemType Directory -Force | Out-Null }
+Start-Transcript -Path "$LogPath\BulkRun_$stamp.log" | Out-Null
+
 Write-Host ""
 Write-Host "  BULK OFFBOARDING" -ForegroundColor Cyan
 Write-Host "  Accounts : $($approved.Count)"
 Write-Host "  Ticket   : $Ticket"
+if ($WhatIfPreference) { Write-Host "  DRY RUN. Nothing will change." -ForegroundColor Yellow }
 Write-Host ""
 
 #--- THE FIVE STEPS, AS FUNCTIONS ---------------------------
@@ -138,7 +143,8 @@ foreach ($a in $approved) {
         Move-ToQuarantine $a.Username              ; $done += "move"
 
         Write-Result $a "COMPLETE" 5 ""
-        Write-Host "  ok       $($a.Username)"
+        if ($WhatIfPreference) { Write-Host "  would    $($a.Username)" }
+        else                   { Write-Host "  ok       $($a.Username)" }
         $consecutive = 0
     }
     catch {
@@ -168,6 +174,15 @@ foreach ($a in $approved) {
 
 #--- THE SUMMARY THAT NAMES NAMES ---------------------------
 
+if (-not (Test-Path $ResultsFile)) {
+    Write-Host ""
+    Write-Host "  Dry run finished. Nothing changed, nothing recorded." -ForegroundColor Yellow
+    Write-Host "  Remove -WhatIf to run it for real."
+    Write-Host ""
+    try { Stop-Transcript | Out-Null } catch { }
+    return
+}
+
 $r = Import-Csv $ResultsFile
 Write-Host ""
 Write-Host "  Bulk offboarding finished.  Approved: $($approved.Count)"
@@ -182,3 +197,5 @@ $r | Where-Object { $_.Outcome -ne "COMPLETE" } | ForEach-Object {
     Write-Host "    $(' ' * 12)      $($_.Detail)"
 }
 Write-Host ""
+
+try { Stop-Transcript | Out-Null } catch { }
