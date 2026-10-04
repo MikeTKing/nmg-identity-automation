@@ -1,0 +1,430 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261003140915
+Username: NMG\Administrator
+RunAs User: NMG\Administrator
+Configuration Name: 
+Machine: WIN-0L625E156HN (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\system32\WindowsPowerShell\v1.0\PowerShell_ISE.exe
+Process ID: 4420
+PSVersion: 5.1.26100.7462
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7462
+BuildVersion: 10.0.26100.7462
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+  Rows read : 40
+
+  Rows in   : 40
+  Cleaned   : 35
+  Dropped   : 5
+    no username              2
+    not a username           1
+    duplicate of row 6       1
+    duplicate of row 4       1
+PS C:\Scripts> $checked | Sort-Object Row | Format-Table -AutoSize
+PS C:\Scripts> Import-Csv "$OutputPath\Approved.csv" |
+  Group-Object Verdict | Select-Object Name, Count
+
+>> TerminatingError(Import-Csv): "Could not find file 'C:\Reports\Separations\Approved.csv'."
+Import-Csv : Could not find file 'C:\Reports\Separations\Approved.csv'.
+At line:1 char:1
++ Import-Csv "$OutputPath\Approved.csv" |
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OpenError: (:) [Import-Csv], FileNotFoundException
+    + FullyQualifiedErrorId : FileOpenFailure,Microsoft.PowerShell.Commands.ImportCsvCommand
+Import-Csv : Could not find file 'C:\Reports\Separations\Approved.csv'.
+At line:1 char:1
++ Import-Csv "$OutputPath\Approved.csv" |
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OpenError: (:) [Import-Csv], FileNotFoundException
+    + FullyQualifiedErrorId : FileOpenFailure,Microsoft.PowerShell.Commands.ImportCsvCommand
+
+PS C:\Scripts> Import-Csv "$OutputPath\Approved.csv" |
+  Group-Object Verdict | Select-Object Name, Count
+
+>> TerminatingError(Import-Csv): "Could not find file 'C:\Reports\Separations\Approved.csv'."
+Import-Csv : Could not find file 'C:\Reports\Separations\Approved.csv'.
+At line:1 char:1
++ Import-Csv "$OutputPath\Approved.csv" |
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OpenError: (:) [Import-Csv], FileNotFoundException
+    + FullyQualifiedErrorId : FileOpenFailure,Microsoft.PowerShell.Commands.ImportCsvCommand
+Import-Csv : Could not find file 'C:\Reports\Separations\Approved.csv'.
+At line:1 char:1
++ Import-Csv "$OutputPath\Approved.csv" |
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OpenError: (:) [Import-Csv], FileNotFoundException
+    + FullyQualifiedErrorId : FileOpenFailure,Microsoft.PowerShell.Commands.ImportCsvCommand
+
+PS C:\Scripts> TerminatingError(): "The pipeline has been stopped."
+PS C:\Scripts> $checked | Sort-Object Row | Format-Table -AutoSize
+PS C:\Scripts> $checked | Sort-Object Row | Format-Table -AutoSize
+PS C:\Scripts> $checked | Sort-Object Row | Format-Table -AutoSize
+PS C:\Scripts> cd C:\Scripts
+. .\Invoke-BulkValidation.ps1 -InputFile "C:\Reports\Separations\NMG_Separations_Q2Q3.csv"
+  Rows read : 40
+
+  Rows in   : 40
+  Cleaned   : 35
+  Dropped   : 5
+    no username              2
+    not a username           1
+    duplicate of row 6       1
+    duplicate of row 4       1
+PS C:\Scripts> TerminatingError(Get-ADUser): "Cannot find an object with identity: 'jhalloway' under: 'DC=NMG,DC=com'."
+PS C:\Scripts> $checked | Sort-Object Row | Format-Table -AutoSize
+
+Row Username    Name                LastSeen              Verdict
+--- --------    ----                --------              -------
+  2 dkessler    Diane Kessler       6/1/2026 6:12:50 PM   ALREADY DISABLED
+  3 tnash       Trevor Nash         8/9/2026 6:12:50 PM   ALREADY DISABLED
+  4 hgrady      Harold Grady        9/25/2023 6:12:53 PM  ALREADY DISABLED
+  5 rpace       Roland Pace         7/15/2025 6:12:53 PM  ALREADY DISABLED
+  6 kferreira   Kathy Ferreira      2/17/2026 6:12:52 PM  ALREADY DISABLED
+  7 oradcliffe  Owen Radcliffe      11/21/2025 6:12:53 PM ALREADY DISABLED
+  8 ehoffman    Erin Hoffman        8/4/2025 6:12:50 PM   ALREADY DISABLED
+  9 sfoster     Sean Foster         11/29/2025 6:12:50 PM ALREADY DISABLED
+ 10 mjohnson    Marcus Johnson      1/13/2026 6:12:55 PM  ALREADY DISABLED
+ 11 dalvarez    Denise Alvarez      2/25/2026 11:17:08 AM READY
+ 12 pnakamura   Peter Nakamura      12/4/2025 11:17:08 AM READY
+ 13 gokonkwo    Grace Okonkwo       4/9/2026 11:17:09 AM  READY
+ 15 awhitlock   Aaron Whitlock      5/8/2026 11:17:09 AM  READY
+ 16 bferreiro   Bianca Ferreiro     4/22/2026 11:17:09 AM READY
+ 17 jhalloway                                             NOT IN DIRECTORY
+ 21 tvance      Theresa Vance       5/21/2026 11:17:09 AM READY
+ 22 dmbeki      Douglas Mbeki       4/26/2026 11:17:09 AM READY
+ 24 apetrova    Alina Petrova       5/27/2026 11:17:09 AM READY
+ 25 wcho        Wendell Cho         3/11/2026 11:17:10 AM READY
+ 26 rquaye      Rosalind Quaye      4/13/2026 11:17:10 AM READY
+ 27 mdelacroix  Marcus Delacroix    5/5/2026 11:17:10 AM  READY
+ 28 isorokin    Ivan Sorokin        6/11/2026 11:17:10 AM READY
+ 29 ppatel      Priya Patel         9/15/2026 6:12:49 PM  STILL EMPLOYED
+ 30 svc_scanner Scanner Service     4/12/2024 6:12:55 PM  SERVICE ACCOUNT
+ 31 lansari     Lucy Ansari         6/15/2026 11:17:10 AM READY
+ 32 bfeld       Bruno Feld          6/4/2026 11:17:10 AM  READY
+ 33 yadeyemi    Yusuf Adeyemi       2/12/2026 11:17:11 AM READY
+ 34 test.user   Test Account        11/19/2022 6:12:54 PM READY
+ 35 moyelaran   Marguerite Oyelaran 5/13/2026 11:17:11 AM READY
+ 36 cpetrie     Callum Petrie       4/17/2026 11:17:11 AM READY
+ 37 hyoshida    Hana Yoshida        5/30/2026 11:17:11 AM READY
+ 38 ebergstrom  Elias Bergstrom     3/27/2026 11:17:11 AM READY
+ 39 smarchetti  Sylvia Marchetti    5/1/2026 11:17:11 AM  READY
+ 40 nosei       Nathaniel Osei      5/18/2026 11:17:12 AM READY
+ 41 svc_backup  Backup Service      9/19/2026 6:12:54 PM  SERVICE ACCOUNT
+
+
+PS C:\Scripts> $checked | Group-Object Verdict |
+  Select-Object Name, Count |
+  Sort-Object Count -Descending
+
+
+Name             Count
+----             -----
+READY               22
+ALREADY DISABLED     9
+SERVICE ACCOUNT      2
+NOT IN DIRECTORY     1
+STILL EMPLOYED       1
+
+
+PS C:\Scripts> $checked | Where-Object { $_.Row -eq 29 } | Format-List
+
+
+Row      : 29
+Username : ppatel
+Name     : Priya Patel
+LastSeen : 9/15/2026 6:12:49 PM
+Verdict  : STILL EMPLOYED
+
+
+
+PS C:\Scripts> Import-Csv "$OutputPath\Approved.csv" |
+  Group-Object Verdict | Select-Object Name, Count
+
+
+Name  Count
+----  -----
+READY    22
+
+
+PS C:\Scripts> $checked | Where-Object { $_.Row -eq 27 } | Format-List
+
+
+Row      : 27
+Username : mdelacroix
+Name     : Marcus Delacroix
+LastSeen : 5/5/2026 11:17:10 AM
+Verdict  : READY
+
+
+
+PS C:\Scripts> $checked | Group-Object Verdict |
+  Select-Object Name, Count |
+  Sort-Object Count -Descending
+
+
+Name             Count
+----             -----
+READY               22
+ALREADY DISABLED     9
+SERVICE ACCOUNT      2
+NOT IN DIRECTORY     1
+STILL EMPLOYED       1
+
+
+PS C:\Scripts> .\Invoke-BulkValidation.ps1 `
+    -InputFile "C:\Reports\Separations\NMG_Separations_Q2Q3.csv"
+
+  Rows read : 40
+
+  Rows in   : 40
+  Cleaned   : 35
+  Dropped   : 5
+    no username              2
+    not a username           1
+    duplicate of row 6       1
+    duplicate of row 4       1
+PS C:\Scripts> TerminatingError(Get-ADUser): "Cannot find an object with identity: 'jhalloway' under: 'DC=NMG,DC=com'."
+PS C:\Scripts> Select-String -Path ".\Invoke-BulkValidation.ps1" -Pattern "Disable-"
+Select-String -Path ".\Invoke-BulkValidation.ps1" -Pattern "Remove-"
+Select-String -Path ".\Invoke-BulkValidation.ps1" -Pattern "Set-AD"
+Select-String -Path ".\Invoke-BulkValidation.ps1" -Pattern "Move-"
+
+PS C:\Scripts> notepad C:\Reports\Separations\Validation-Report.txt
+
+PS C:\Scripts> cd C:\nmg-identity-automation
+git pull
+git status
+
+Already up to date.
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Logs/Invoke-BulkValidation_2026-10-03_1344.log
+	Logs/Invoke-BulkValidation_2026-10-03_1358.log
+	Logs/Invoke-BulkValidation_2026-10-03_1409.log
+	Logs/Invoke-BulkValidation_2026-10-03_1414.log
+	Logs/Invoke-BulkValidation_2026-10-03_1430.log
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS C:\nmg-identity-automation> Copy-Item "C:\Scripts\Invoke-BulkValidation.ps1" -Destination ".\Scripts\"
+
+Copy-Item "C:\Reports\Separations\Separations_dropped.csv"  -Destination ".\Evidence\"
+Copy-Item "C:\Reports\Separations\Validation-Report.txt"    -Destination ".\Evidence\"
+Copy-Item "C:\Reports\Separations\Approved.csv"             -Destination ".\Evidence\"
+
+PS C:\nmg-identity-automation> Get-ChildItem ".\Scripts", ".\Evidence", ".\Logs" |
+  Select-Object Directory, Name, LastWriteTime
+
+# One new script. 3 new outputs. One log.
+# Zero accounts modified.
+
+.\Scripts\Get-NMGOffboardingStatus.ps1
+
+# The numbers should be identical to yesterday
+
+
+
+  NORTHSTAR OFFBOARDING STATUS
+  Saturday 3 October 2026, 14:32
+
+  Offboarded and quarantined ....... 5
+  Offboarded, not yet moved ........ 25
+  Still waiting .................... 30
+
+  NOT YET MOVED
+    Guest        Guest
+    krbtgt       krbtgt
+    mjohnson     Marcus Johnson
+    tnash        Trevor Nash
+    dkessler     Diane Kessler
+    sfoster      Sam Foster
+    ehoffman     Eric Hoffman
+    bknowles     Bernadette Knowles
+    rvasquez     Rosa Vasquez
+    pnorris      Peter Norris
+    jpark        Jae Park
+    awhitfield   Angela Whitfield
+    dmurray      Dennis Murray
+    kobrien      Katie OBrien
+    lchen        Linda Chen
+    gmorales     Gabriel Morales
+    hthompson    Hannah Thompson
+    tbaker       Tonya Baker
+    cwarren      Curtis Warren
+    jrivera      Joel Rivera
+    nsullivan    Nina Sullivan
+    avaldez      Ana Valdez
+    bschaefer    Bill Schaefer
+    mfitzgerald  Molly Fitzgerald
+    rkline       Ruth Kline
+
+  STILL WAITING
+    test.user    TEST DO NOT USE      IT
+    svc_legacyfax svc_legacyfax        Service Accounts
+    svc_scanner  svc_scanner          Service Accounts
+    mwebb2       Marcus Webb 2        Operations
+    temp.imaging TEMP Imaging         Operations
+    pnakamura    Peter Nakamura       Finance
+    vsterling    Vaughn Sterling      Operations
+    yadeyemi     Yusuf Adeyemi        IT
+    dalvarez     Denise Alvarez       Finance
+    cashford     Camille Ashford      Operations
+    wcho         Wendell Cho          IT
+    ebergstrom   Elias Bergstrom      IT
+    iokoro       Imani Okoro          Operations
+    jvoss        Jennifer Voss        Finance
+    gokonkwo     Grace Okonkwo        HR
+    rquaye       Rosalind Quaye       HR
+    cpetrie      Callum Petrie        Operations
+    bferreiro    Bianca Ferreiro      Finance
+    dmbeki       Douglas Mbeki        Operations
+    smarchetti   Sylvia Marchetti     HR
+    mdelacroix   Marcus Delacroix     Operations
+    awhitlock    Aaron Whitlock       Operations
+    moyelaran    Marguerite Oyelaran  HR
+    nosei        Nathaniel Osei       Operations
+    tvance       Theresa Vance        HR
+    apetrova     Alina Petrova        Finance
+    hyoshida     Hana Yoshida         Finance
+    bfeld        Bruno Feld           Finance
+    isorokin     Ivan Sorokin         Finance
+    lansari      Lucy Ansari          Operations
+
+Directory                           Name                                          LastWriteTime
+---------                           ----                                          -------------
+C:\nmg-identity-automation\Scripts  .gitkeep                                      9/23/2026 7:35:39 PM
+C:\nmg-identity-automation\Scripts  Find-StaleAccounts.ps1                        9/26/2026 10:33:54 PM
+C:\nmg-identity-automation\Scripts  Get-NMGOffboardingStatus.ps1                  9/29/2026 1:41:58 PM
+C:\nmg-identity-automation\Scripts  Invoke-BulkValidation.ps1                     10/3/2026 2:10:17 PM
+C:\nmg-identity-automation\Scripts  Offboard-NMGUser.ps1                          9/26/2026 11:05:13 PM
+C:\nmg-identity-automation\Evidence .gitkeep                                      9/23/2026 7:35:39 PM
+C:\nmg-identity-automation\Evidence Approved.csv                                  10/3/2026 2:30:39 PM
+C:\nmg-identity-automation\Evidence hgrady_account_2026-09-27_1443.csv            9/27/2026 2:43:03 PM
+C:\nmg-identity-automation\Evidence hgrady_groups_2026-09-27_1443.csv             9/27/2026 2:43:03 PM
+C:\nmg-identity-automation\Evidence kferreira_account_2026-09-26_2220.csv         9/26/2026 10:20:32 PM
+C:\nmg-identity-automation\Evidence kferreira_final_state.txt                     9/26/2026 10:34:39 PM
+C:\nmg-identity-automation\Evidence kferreira_groups_2026-09-26_2220.csv          9/26/2026 10:20:40 PM
+C:\nmg-identity-automation\Evidence NMG_Separations_Q2Q3.csv                      10/1/2026 11:17:12 AM
+C:\nmg-identity-automation\Evidence NMG_StaleAccounts_2026-09-23_1906.csv         9/23/2026 7:06:37 PM
+C:\nmg-identity-automation\Evidence NMG_StaleAccounts_2026-09-23_1906_SUMMARY.txt 9/23/2026 7:06:37 PM
+C:\nmg-identity-automation\Evidence oradcliffe_account_2026-09-29_1338.csv        9/29/2026 1:38:39 PM
+C:\nmg-identity-automation\Evidence oradcliffe_groups_2026-09-29_1338.csv         9/29/2026 1:38:39 PM
+C:\nmg-identity-automation\Evidence rpace_account_2026-09-28_1323.csv             9/28/2026 1:23:33 PM
+C:\nmg-identity-automation\Evidence rpace_account_2026-09-28_1355.csv             9/28/2026 1:55:15 PM
+C:\nmg-identity-automation\Evidence rpace_account_2026-09-28_1357.csv             9/28/2026 1:57:31 PM
+C:\nmg-identity-automation\Evidence rpace_groups_2026-09-28_1323.csv              9/28/2026 1:23:33 PM
+C:\nmg-identity-automation\Evidence rpace_groups_2026-09-28_1355.csv              9/28/2026 1:55:15 PM
+C:\nmg-identity-automation\Evidence rpace_groups_2026-09-28_1357.csv              9/28/2026 1:57:31 PM
+C:\nmg-identity-automation\Evidence rpace_groups_2026-09-28_2042_manual.csv       9/28/2026 8:42:17 PM
+C:\nmg-identity-automation\Evidence Separations_cleaned.csv                       10/1/2026 12:57:28 PM
+C:\nmg-identity-automation\Evidence Separations_dropped.csv                       10/3/2026 2:30:35 PM
+C:\nmg-identity-automation\Evidence Validation-Report.txt                         10/3/2026 2:30:39 PM
+C:\nmg-identity-automation\Logs     .gitkeep                                      9/23/2026 7:35:39 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-27_1443.log           9/27/2026 3:10:33 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-27_1447.log           9/27/2026 2:47:16 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-27_1448.log           9/27/2026 2:48:21 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-27_1449.log           9/27/2026 2:49:07 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-27_1450.log           9/27/2026 2:50:58 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-27_1453.log           9/27/2026 2:53:47 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1322.log           9/28/2026 1:22:49 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1323.log           9/28/2026 1:23:33 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1334.log           9/28/2026 1:34:55 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1335.log           9/28/2026 1:35:12 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1337.log           9/28/2026 1:37:16 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1354.log           9/28/2026 1:54:13 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1355.log           9/28/2026 1:55:15 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1356.log           9/28/2026 1:56:58 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-28_1357.log           9/28/2026 1:57:31 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-29_1335.log           9/29/2026 1:35:42 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-29_1338.log           9/29/2026 1:38:40 PM
+C:\nmg-identity-automation\Logs     Disable-NMGUser_2026-09-29_1532.log           9/29/2026 3:32:11 PM
+C:\nmg-identity-automation\Logs     Invoke-BulkValidation_2026-10-03_1344.log     10/3/2026 1:44:33 PM
+C:\nmg-identity-automation\Logs     Invoke-BulkValidation_2026-10-03_1358.log     10/3/2026 1:58:58 PM
+C:\nmg-identity-automation\Logs     Invoke-BulkValidation_2026-10-03_1409.log     10/3/2026 2:09:15 PM
+C:\nmg-identity-automation\Logs     Invoke-BulkValidation_2026-10-03_1414.log     10/3/2026 2:14:50 PM
+C:\nmg-identity-automation\Logs     Invoke-BulkValidation_2026-10-03_1430.log     10/3/2026 2:30:39 PM
+
+
+PS C:\nmg-identity-automation> notepad Documentation\Offboarding-Runbook.md
+PS C:\nmg-identity-automation> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   Documentation/Offboarding-Runbook.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Evidence/Approved.csv
+	Evidence/Separations_dropped.csv
+	Evidence/Validation-Report.txt
+	Logs/Invoke-BulkValidation_2026-10-03_1344.log
+	Logs/Invoke-BulkValidation_2026-10-03_1358.log
+	Logs/Invoke-BulkValidation_2026-10-03_1409.log
+	Logs/Invoke-BulkValidation_2026-10-03_1414.log
+	Logs/Invoke-BulkValidation_2026-10-03_1430.log
+	Scripts/Invoke-BulkValidation.ps1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\nmg-identity-automation> git add .
+PS C:\nmg-identity-automation> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   Documentation/Offboarding-Runbook.md
+	new file:   Evidence/Approved.csv
+	new file:   Evidence/Separations_dropped.csv
+	new file:   Evidence/Validation-Report.txt
+	new file:   Logs/Invoke-BulkValidation_2026-10-03_1344.log
+	new file:   Logs/Invoke-BulkValidation_2026-10-03_1358.log
+	new file:   Logs/Invoke-BulkValidation_2026-10-03_1409.log
+	new file:   Logs/Invoke-BulkValidation_2026-10-03_1414.log
+	new file:   Logs/Invoke-BulkValidation_2026-10-03_1430.log
+	new file:   Scripts/Invoke-BulkValidation.ps1
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   Logs/Invoke-BulkValidation_2026-10-03_1344.log
+	modified:   Logs/Invoke-BulkValidation_2026-10-03_1358.log
+	modified:   Logs/Invoke-BulkValidation_2026-10-03_1409.log
+
+PS C:\nmg-identity-automation> git commit -m "Add Invoke-BulkValidation. Validation only, no accounts modified."
+[main 9b81c1f] Add Invoke-BulkValidation. Validation only, no accounts modified.
+ 10 files changed, 454 insertions(+)
+ create mode 100644 Evidence/Approved.csv
+ create mode 100644 Evidence/Separations_dropped.csv
+ create mode 100644 Evidence/Validation-Report.txt
+ create mode 100644 Logs/Invoke-BulkValidation_2026-10-03_1344.log
+ create mode 100644 Logs/Invoke-BulkValidation_2026-10-03_1358.log
+ create mode 100644 Logs/Invoke-BulkValidation_2026-10-03_1409.log
+ create mode 100644 Logs/Invoke-BulkValidation_2026-10-03_1414.log
+ create mode 100644 Logs/Invoke-BulkValidation_2026-10-03_1430.log
+ create mode 100644 Scripts/Invoke-BulkValidation.ps1
+PS C:\nmg-identity-automation> git push
+git : To https://github.com/MikeTKing/nmg-identity-automation.git
+At line:1 char:1
++ git push
++ ~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...-automation.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+git : To https://github.com/MikeTKing/nmg-identity-automation.git
+At line:1 char:1
++ git push
++ ~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...-automation.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+   446b1d5..9b81c1f  main -> main
+   446b1d5..9b81c1f  main -> main

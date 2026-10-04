@@ -270,6 +270,50 @@ A review that is performed but not really done is worse than no
 review, because it converts an unchecked action into an approved
 one and attaches a name to it.
 
+### When a bulk run fails partway
+
+Each account is processed independently and atomically. An
+account either completes all five steps or is restored to its
+original state. No account is left partially offboarded.
+
+### The three outcomes
+
+Every account in a bulk run ends in exactly one of three states,
+and each is recorded by name in the results file.
+
+**COMPLETE.** All five steps ran. The account is offboarded and
+the evidence exists.
+
+**ROLLED BACK.** A step failed and the account was restored to
+its original state. Group memberships are restored from the
+export taken in step 1. The randomised password is not reversed,
+because the value is unknown to everybody and a re-enabled
+account with an unknown password cannot be signed into.
+
+**STRANDED.** A step failed and the rollback also failed. The
+account is in an undefined state and requires manual review. The
+results file names the account, the step and the reason.
+
+A stranded account is the only outcome requiring human action,
+and it is always named.
+
+### Stopping early
+
+The run stops after three consecutive failures on the assumption
+that the cause is systemic rather than per-account. Accounts not
+yet attempted are untouched and remain on the approved list.
+
+### Repeating a run
+
+A bulk run may be repeated against the same approved list.
+Accounts already offboarded fail at step 2 and are rolled back
+without change, so a repeat run resumes rather than duplicating.
+
+### The summary
+
+Every run produces a summary naming, for each failure, the
+account, the step that failed, the reason, and the resulting
+state. A count alone is not sufficient.
 
 
 ## History
