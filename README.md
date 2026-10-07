@@ -1,5 +1,7 @@
 # NMG Identity Automation
 
+**Walkthrough video:** https://www.loom.com/share/8a000f9ce18b43bb81c5399a8abd19a8
+
 PowerShell scripts that automate parts of the identity lifecycle, written for Northstar Medical Group, a simulated healthcare organization.
 
 ## The Problem
